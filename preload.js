@@ -1,16 +1,11 @@
 const {contextBridge, ipcRenderer} = require('electron');
 
 function criarChamado(titulo, descricao){
-
-  console.log("Função Criar Chamado")
-  console.log("Titulo: ", titulo)
-  console.log("Descrição: ", descricao)
-
-  ipcRenderer.invoke('criarChamado', titulo, descricao);
+  return ipcRenderer.invoke('criar-chamado', titulo, descricao);
 }
 
 function listarChamados(){
-  return ipcRenderer.invoke('listarChamado')
+  return ipcRenderer.invoke('listar-chamados')
 }
 
 function deletarChamado(id) {
@@ -20,5 +15,5 @@ function deletarChamado(id) {
 contextBridge.exposeInMainWorld('api', {
   criarChamado,
   listarChamados,
-  deletarChamado
+  deletarChamado,
 });
